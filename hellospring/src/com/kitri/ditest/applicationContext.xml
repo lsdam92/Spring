@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.3.xsd">
+
+
+	<!--생성자를 이용한 방법 -->	
+	<bean id="m1" class="com.kitri.ditest.MemberDto">
+		<constructor-arg index="1">
+			<value>홍길동</value>		
+		</constructor-arg>
+		<constructor-arg index="0">
+			<value>hong</value>
+		</constructor-arg>
+	</bean>
+	
+	<bean id="m2" class="com.kitri.ditest.MemberDto">
+	<!-- value 값지정시 값은 string -->
+		<constructor-arg value="홍길동"/>
+		<constructor-arg value="25" type="int"/>
+	</bean>
+
+	<bean id="m3" class="com.kitri.ditest.MemberDto">
+		<constructor-arg value="이소담"/>
+		<constructor-arg value="1000000" type="double"/>
+	</bean>
+	
+	<bean id="m4" class="com.kitri.ditest.MemberDto">
+		<constructor-arg value="dam"/>
+		<constructor-arg value="이소담" index="1"/>
+		<constructor-arg value="29" type="int"/>
+		<constructor-arg value="1000000" type="double"/>
+	</bean>
+	
+	<bean id="m5" class="com.kitri.ditest.MemberDto">
+		<constructor-arg value="dam"/>
+		<constructor-arg value="이소담" index="1"/>
+		<constructor-arg value="29" type="int"/>
+		<constructor-arg value="1000000" type="double"/>
+		<constructor-arg ref="address1"/>
+	</bean>
+	<!-- address1이 밑에 있지만 실행됨 : xml에서는 생성시 순서상관X -->
+	<bean id="address1" class="com.kitri.ditest.AddressDto">
+		<constructor-arg value="12345"/>
+		<constructor-arg value="경기도 과천시  문원로72"/>
+		<constructor-arg value="b-02"/>
+	</bean>
+<!-- //////////////////// -->	
+	<!-- setter만 이용 -->
+	<bean id="m6" class="com.kitri.ditest.MemberDto" init-method="init">
+		<property name="name">
+			<value>이소담</value>
+		</property>
+		<property name="id" >
+			<value>dam</value>
+		</property>
+		<property name="money" value="1000000"/>
+		<property name="age" value="29"/>
+		<property name="addressDto" ref="address2"></property>
+	</bean>
+	
+	<bean id="address2" class="com.kitri.ditest.AddressDto">
+		<property name="zipcode" value="123456"/>
+		<property name="address" value="경기도 과천시 문원동"/>
+		<property name="addressDetail" value="98번지 b-2"/>
+	</bean>
+	<!--/////////////////////////////////////// -->
+	<bean id="m7" class="com.kitri.ditest.MemberDto"
+		p:id="java"
+		p:name="이순신"
+		p:age="29"
+		p:money="25230000"
+		p:addressDto-ref="address3"
+	/>
+	
+	<bean id="address3" class="com.kitri.ditest.AddressDto"
+		p:zipcode="23453"
+		p:address="경기도과천시"
+		p:addressDetail="문원동"
+	/>
+</beans>
