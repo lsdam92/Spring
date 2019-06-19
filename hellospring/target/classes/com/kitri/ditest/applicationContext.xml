@@ -52,7 +52,7 @@
 		<property name="name">
 			<value>이소담</value>
 		</property>
-		<property name="id" >
+		<property name="id">
 			<value>dam</value>
 		</property>
 		<property name="money" value="1000000"/>
