@@ -55,7 +55,7 @@
 		select name, id, emailid, emaildomain, joindate
 		from member
 		where id =
-		#{userid} and pass = #{userpwd}
+		#{id} and pass = #{pass}
 		<!-- type가 map인경우 map에 넣어준 key값을 넣어준다 -->
 	</select>
 	<delete id="deleteMember" parameterType="String">

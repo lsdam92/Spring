@@ -17,27 +17,27 @@ $(document).ready(function() {
 	
 });
 
+
 function memberList(key, word) {
 	
 	$("#mlist").empty();
 	
 	$.ajax({
-		url:"${root}/admin",
-			type : "get",
-			dataType : "xml",
-			data : "act=getmemberlist&key="+key+"&word=" + word,
-			timeout : 30000,
-			cache : false,
-			success : function(xml) { // 성공  
-
-				var member = $(xml).find("member");
-				for (var i = 0; i < member.length; i++) {
-					var id = $(member[i]).find("id").text();
-					var name = $(member[i]).find("name").text();
-					var email = $(member[i]).find("email").text();
-					var tel = $(member[i]).find("tel").text();
-					var address = $(member[i]).find("address").text();
-					var joindate = $(member[i]).find("joindate").text();
+			type : "GET",
+			url:"${root}/admin/memberlist.kitri",
+			dataType : "json",
+			data : {"ket":key,"word":word},
+			success : function(json) { // 성공  
+				var list = json.memberlist;
+				var len = list.length;
+				
+				for (var i = 0; i < len; i++) {
+					var id = list[i].id;
+					var name =list[i].name;
+					var email = list[i].emailid +"@" + list[i].emaildomain;
+					var tel =list[i].tel1 + "-" + list[i].tel2 +"-" + list[i].tel3;
+					var address =list[i].address + " " + list[i].addressDetail;
+					var joindate = list[i].joindate;
 
 					var tr = $("<tr>").attr("class", "table-active");
 					var td1 = $("<td>").html(id);
