@@ -11,8 +11,8 @@
 <body>
 <div align="center">
 <h3>Spring & Mybatis를 이용한 회원관리</h3>
-<a href="${root}/user/register.kitri">회원가입</a>
-<a href="${root}/user/login.kitri">로그인</a>
+<a href="${root}/user/register.kitri">다미다미의 회원가입</a>
+<a href="${root}/user/login.kitri">다미의 로그인</a>
 </div>
 </body>
 </html>
